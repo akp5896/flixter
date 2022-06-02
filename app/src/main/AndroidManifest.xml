@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Flixter"
         tools:targetApi="31">
         <activity
+            android:name=".TrailerActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailsActivity"
             android:exported="false" />
         <activity

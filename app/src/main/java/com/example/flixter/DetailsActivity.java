@@ -2,7 +2,9 @@ package com.example.flixter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -12,6 +14,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.flixter.databinding.ActivityDetailsBinding;
 import com.example.flixter.models.Movie;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 import org.parceler.Parcel;
 import org.parceler.Parcels;
@@ -27,21 +33,18 @@ public class DetailsActivity extends AppCompatActivity {
 
     Movie movie;
 
-    ActivityDetailsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityDetailsBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        setContentView(R.layout.activity_details);
 
-        tvSynopsys = binding.tvSynopsis;
-        ratingBar = binding.rbVoteAverage;
-        ivPoster = binding.ivPoster;
-        tvVoteCount = binding.tvVoteCount;
-        tvReleaseDate = binding.tvReleaseDate;
-        rvInfo = binding.rvInfo;
+        tvSynopsys = findViewById(R.id.tvSynopsis);
+        ratingBar = findViewById(R.id.rbVoteAverage);
+        ivPoster = findViewById(R.id.ivPoster);
+        tvVoteCount = findViewById(R.id.tvVoteCount);
+        tvReleaseDate = findViewById(R.id.tvReleaseDate);
+        rvInfo = findViewById(R.id.rvInfo);
 
         rvInfo.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_shadow_start_color));
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
@@ -54,5 +57,14 @@ public class DetailsActivity extends AppCompatActivity {
         ratingBar.setRating(movie.getVoteAverage().floatValue() / 2);
         tvReleaseDate.setText("Release date: " + movie.getReleaseDate());
         tvVoteCount.setText(String.format(" based on %d votes", movie.getVoteCount()));
+
+        ivPoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TrailerActivity.class);
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                startActivity(intent);
+            }
+        });
     }
 }
