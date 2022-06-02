@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsActivity"
+
+    >
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="76dp" />
+    <RelativeLayout
+        android:id="@+id/rvInfo"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@id/ivPoster"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="5dp"
+        >
+    <RatingBar
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rbVoteAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.5"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/tvVoteCount"
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@+id/rbVoteAverage"
+        android:layout_height="wrap_content"
+        android:text="TextView"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tvReleaseDate"
+        android:layout_below="@+id/rvInfo"
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@id/ivPoster"
+        android:layout_height="wrap_content"
+        android:text="TextView"/>
+    <TextView
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tvSynopsis"
+        android:layout_below="@+id/tvReleaseDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivPoster"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="490dp" />
+
+</RelativeLayout>

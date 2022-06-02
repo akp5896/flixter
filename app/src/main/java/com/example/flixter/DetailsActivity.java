@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.flixter.databinding.ActivityDetailsBinding;
+import com.example.flixter.databinding.ActivityMainBinding;
 import com.example.flixter.models.Movie;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -30,21 +31,23 @@ public class DetailsActivity extends AppCompatActivity {
     TextView tvVoteCount;
     TextView tvReleaseDate;
     RelativeLayout rvInfo;
-
     Movie movie;
+    ActivityDetailsBinding binding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        binding = ActivityDetailsBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        tvSynopsys = findViewById(R.id.tvSynopsis);
-        ratingBar = findViewById(R.id.rbVoteAverage);
-        ivPoster = findViewById(R.id.ivPoster);
-        tvVoteCount = findViewById(R.id.tvVoteCount);
-        tvReleaseDate = findViewById(R.id.tvReleaseDate);
-        rvInfo = findViewById(R.id.rvInfo);
+        tvSynopsys = binding.tvSynopsis;
+        ratingBar = binding.rbVoteAverage;
+        ivPoster = binding.ivPoster;
+        tvVoteCount = binding.tvVoteCount;
+        tvReleaseDate = binding.tvReleaseDate;
+        rvInfo = binding.rvInfo;
 
         rvInfo.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_shadow_start_color));
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
