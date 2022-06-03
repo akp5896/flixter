@@ -72,4 +72,10 @@
         tools:layout_editor_absoluteX="77dp"
         tools:layout_editor_absoluteY="490dp" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvActors"
+        android:layout_below="@id/tvSynopsis"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>
