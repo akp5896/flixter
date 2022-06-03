@@ -34,7 +34,6 @@ public class TrailerActivity extends YouTubeBaseActivity {
         setContentView(view);
 
         // resolve the player view from the layout
-        YouTubePlayerView playerView = (YouTubePlayerView) binding.player;
 
         AsyncHttpClient client = new AsyncHttpClient();
         Movie movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
@@ -49,7 +48,7 @@ public class TrailerActivity extends YouTubeBaseActivity {
                             JSONArray results = object.getJSONArray("results");
                             if(results.length() != 0) {
                                 String videoId = results.getJSONObject(0).getString("key");
-                                runVideo(playerView, videoId);
+                                runVideo(binding.player, videoId);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

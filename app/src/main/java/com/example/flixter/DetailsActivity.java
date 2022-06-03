@@ -42,15 +42,7 @@ import okhttp3.Headers;
 public class DetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "Details activity";
-    TextView tvSynopsys;
-    RatingBar ratingBar;
-    ImageView ivPoster;
-    TextView tvVoteCount;
-    TextView tvGenres;
-    TextView tvReleaseDate;
-    RelativeLayout rvInfo;
     Movie movie;
-    RecyclerView rvActors;
     ActivityDetailsBinding binding;
 
 
@@ -63,30 +55,20 @@ public class DetailsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        tvSynopsys = binding.tvSynopsis;
-        ratingBar = binding.rbVoteAverage;
-        ivPoster = binding.ivPoster;
-        tvVoteCount = binding.tvVoteCount;
-        tvReleaseDate = binding.tvReleaseDate;
-        rvInfo = binding.rvInfo;
-        tvGenres = binding.tvGenres;
-
-
-
-        rvInfo.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_shadow_start_color));
+        binding.rvInfo.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_shadow_start_color));
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
-        tvSynopsys.setText(movie.getOverview());
+        binding.tvSynopsis.setText(movie.getOverview());
         Glide.with(this)
                 .load(movie.getBackdropPath())
                 .placeholder(R.drawable.flicks_backdrop_placeholder)
-                .into(ivPoster);
+                .into(binding.ivPoster);
 
-        ratingBar.setRating(movie.getVoteAverage().floatValue() / 2);
-        tvReleaseDate.setText("Release date: " + movie.getReleaseDate());
-        tvVoteCount.setText(String.format(" based on %d votes", movie.getVoteCount()));
-        tvGenres.setText(movie.getGenres());
+        binding.rbVoteAverage.setRating(movie.getVoteAverage().floatValue() / 2);
+        binding.tvReleaseDate.setText("Release date: " + movie.getReleaseDate());
+        binding.tvVoteCount.setText(String.format(" based on %d votes", movie.getVoteCount()));
+        binding.tvGenres.setText(movie.getGenres());
 
-        ivPoster.setOnClickListener(new View.OnClickListener() {
+        binding.ivPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), TrailerActivity.class);
@@ -95,11 +77,9 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
         if(getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            rvActors = binding.rvActors;
-
             ActorAdapter actorAdapter = new ActorAdapter(this, actorList);
-            rvActors.setAdapter(actorAdapter);
-            rvActors.setLayoutManager(new LinearLayoutManager(this));
+            binding.rvActors.setAdapter(actorAdapter);
+            binding.rvActors.setLayoutManager(new LinearLayoutManager(this));
             loadActors(actorAdapter);
         }
 

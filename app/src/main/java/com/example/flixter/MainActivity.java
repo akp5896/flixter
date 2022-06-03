@@ -44,11 +44,9 @@ public class MainActivity extends AppCompatActivity {
         NOW_PLAYING_URL = String.format("https://api.themoviedb.org/3/movie/now_playing?api_key=%s", getString(R.string.movie_db_api_key));
         GENRES_URL = String.format("https://api.themoviedb.org/3/genre/movie/list?api_key=%s", getString(R.string.movie_db_api_key));
 
-        RecyclerView rvMovies = binding.rvMovies;
-
         MovieAdapter movieAdapter = new MovieAdapter(this, movies);
-        rvMovies.setAdapter(movieAdapter);
-        rvMovies.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvMovies.setAdapter(movieAdapter);
+        binding.rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
         AsyncHttpClient client = new AsyncHttpClient();
 
