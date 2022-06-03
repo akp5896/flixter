@@ -1,5 +1,7 @@
 package com.example.flixter.models;
 
+import com.example.flixter.MainActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +21,7 @@ public class Movie {
     Integer voteCount;
     String releaseDate;
     Integer id;
+    List<String> genres = new ArrayList<>();
 
     public Movie() {
 
@@ -34,6 +37,13 @@ public class Movie {
             voteCount = jsonObject.getInt("vote_count");
             releaseDate = jsonObject.getString("release_date");
             id = jsonObject.getInt("id");
+
+            JSONArray ids = jsonObject.getJSONArray("genre_ids");
+            for(int i = 0; i < ids.length(); i++)
+            {
+                genres.add(MainActivity.genres.get(ids.getInt(i)));
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -71,6 +81,10 @@ public class Movie {
 
     public String getPosterPath() {
         return String.format("https://image.tmdb.org/t/p/w342%s", posterPath);
+    }
+
+    public String getGenres() {
+        return String.join(", ", genres);
     }
 
     public String getBackdropPath() {

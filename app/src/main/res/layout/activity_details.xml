@@ -40,22 +40,32 @@
         android:layout_toEndOf="@+id/rbVoteAverage"
         android:layout_height="wrap_content"
         android:text="TextView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rbVoteAverage"
+            android:text="Genres list"
+            android:id="@+id/tvGenres"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/tvReleaseDate"
+            android:layout_below="@+id/tvGenres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"/>
     </RelativeLayout>
-    <TextView
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:id="@+id/tvReleaseDate"
-        android:layout_below="@+id/rvInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"/>
+
     <TextView
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="5dp"
         android:id="@+id/tvSynopsis"
-        android:layout_below="@+id/tvReleaseDate"
+        android:layout_below="@+id/rvInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"

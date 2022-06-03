@@ -19,15 +19,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=612bbb4ea684396b069174e4e0674e76";
+    public static final String GENRES_URL = "https://api.themoviedb.org/3/genre/movie/list?api_key=612bbb4ea684396b069174e4e0674e76";
     public static final String TAG = "Main activity";
     List<Movie> movies = new ArrayList<>();
+    public static HashMap<Integer, String> genres = new HashMap<>();
     ActivityMainBinding binding;
 
     @Override
@@ -43,9 +47,39 @@ public class MainActivity extends AppCompatActivity {
         rvMovies.setAdapter(movieAdapter);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-
         AsyncHttpClient client = new AsyncHttpClient();
 
+        loadGenres(client);
+        loadMoviesList(movieAdapter, client);
+    }
+
+    private void loadGenres(AsyncHttpClient client) {
+        client.get(GENRES_URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                JSONObject object = json.jsonObject;
+                try {
+                    JSONArray results = object.getJSONArray("genres");
+                    for(int i = 0; i < results.length(); i++) {
+                        JSONObject genre = results.getJSONObject(i);
+                        genres.put(genre.getInt("id"), genre.getString("name"));
+                    }
+                    for(Map.Entry<Integer, String> entry : genres.entrySet()) {
+                        Log.d(TAG, entry.getKey() + ": " + entry.getValue());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.d(TAG, "Unable to load genres" + response);
+            }
+        });
+    }
+
+    private void loadMoviesList(MovieAdapter movieAdapter, AsyncHttpClient client) {
         client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Headers headers, JSON response) {
@@ -68,6 +102,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-
     }
 }

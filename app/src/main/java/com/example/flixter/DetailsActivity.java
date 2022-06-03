@@ -29,6 +29,7 @@ public class DetailsActivity extends AppCompatActivity {
     RatingBar ratingBar;
     ImageView ivPoster;
     TextView tvVoteCount;
+    TextView tvGenres;
     TextView tvReleaseDate;
     RelativeLayout rvInfo;
     Movie movie;
@@ -48,6 +49,7 @@ public class DetailsActivity extends AppCompatActivity {
         tvVoteCount = binding.tvVoteCount;
         tvReleaseDate = binding.tvReleaseDate;
         rvInfo = binding.rvInfo;
+        tvGenres = binding.tvGenres;
 
         rvInfo.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_shadow_start_color));
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
@@ -60,6 +62,7 @@ public class DetailsActivity extends AppCompatActivity {
         ratingBar.setRating(movie.getVoteAverage().floatValue() / 2);
         tvReleaseDate.setText("Release date: " + movie.getReleaseDate());
         tvVoteCount.setText(String.format(" based on %d votes", movie.getVoteCount()));
+        tvGenres.setText(movie.getGenres());
 
         ivPoster.setOnClickListener(new View.OnClickListener() {
             @Override
