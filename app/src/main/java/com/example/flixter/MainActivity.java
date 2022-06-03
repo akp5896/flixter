@@ -27,8 +27,8 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=612bbb4ea684396b069174e4e0674e76";
-    public static final String GENRES_URL = "https://api.themoviedb.org/3/genre/movie/list?api_key=612bbb4ea684396b069174e4e0674e76";
+    public static String NOW_PLAYING_URL;
+    public static String GENRES_URL;
     public static final String TAG = "Main activity";
     List<Movie> movies = new ArrayList<>();
     public static HashMap<Integer, String> genres = new HashMap<>();
@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        NOW_PLAYING_URL = String.format("https://api.themoviedb.org/3/movie/now_playing?api_key=%s", getString(R.string.movie_db_api_key));
+        GENRES_URL = String.format("https://api.themoviedb.org/3/genre/movie/list?api_key=%s", getString(R.string.movie_db_api_key));
 
         RecyclerView rvMovies = binding.rvMovies;
 

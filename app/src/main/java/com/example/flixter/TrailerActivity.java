@@ -38,7 +38,7 @@ public class TrailerActivity extends YouTubeBaseActivity {
 
         AsyncHttpClient client = new AsyncHttpClient();
         Movie movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
-        String videoUrl = String.format("https://api.themoviedb.org/3/movie/%d/videos?api_key=612bbb4ea684396b069174e4e0674e76", movie.getId());
+        String videoUrl = String.format("https://api.themoviedb.org/3/movie/%d/videos?api_key=%s", movie.getId(), getString(R.string.movie_db_api_key));
 
         client.get(videoUrl, new JsonHttpResponseHandler() {
                     @Override
