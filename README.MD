@@ -30,13 +30,14 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/akp5896/flixter/blob/master/walk6.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/akp5896/flixter/blob/master/walk7.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with Licecap.
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+Placeholder in video 
 
 ## Open-source libraries used
 
