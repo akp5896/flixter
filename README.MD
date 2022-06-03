@@ -36,8 +36,7 @@ GIF created with Licecap.
 
 ## Notes
 
-Describe any challenges encountered while building the app.
-Placeholder in video 
+Placeholder in gif 5 is more noticable.
 
 ## Open-source libraries used
 
