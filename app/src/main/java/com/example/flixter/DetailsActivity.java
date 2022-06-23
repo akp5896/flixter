@@ -55,6 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
         binding.rvInfo.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_shadow_start_color));
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         binding.tvSynopsis.setText(movie.getOverview());
